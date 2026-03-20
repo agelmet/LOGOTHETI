@@ -257,6 +257,16 @@
         </div>
     </dialog>
 
+    <!-- Lightbox Modal -->
+    <dialog id="lightbox-modal" class="p-0 m-auto w-full h-full max-w-none max-h-none bg-black/95 backdrop:bg-black/95 overflow-hidden" onclick="this.close()">
+        <div class="w-full h-full flex items-center justify-center p-4 md:p-12 relative">
+            <button onclick="document.getElementById('lightbox-modal').close()" class="absolute top-6 right-6 text-white hover:text-gold transition-colors z-50">
+                <i data-lucide="x" class="w-10 h-10"></i>
+            </button>
+            <img id="lightbox-img" src="" alt="Full screen view" class="max-w-full max-h-full object-contain" onclick="event.stopPropagation()">
+        </div>
+    </dialog>
+
     <!-- CBT SECTION -->
     <section id="cbt" class="relative py-12 md:py-24 px-6 lg:px-12 max-w-7xl mx-auto bg-white/50 rounded-[3rem] my-12">
         <div class="max-w-4xl mx-auto space-y-8 reveal-on-scroll">
@@ -334,19 +344,19 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-lg cursor-pointer reveal-on-scroll">
+                <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-lg cursor-pointer reveal-on-scroll" onclick="openLightbox('https://github.com/agelmet/LOGOTHETI/blob/main/DSC06151.jpg?raw=true')">
                     <img src="https://github.com/agelmet/LOGOTHETI/blob/main/DSC06151.jpg?raw=true" alt="Office Space 1" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
                     <div class="absolute inset-0 bg-espresso/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-lg cursor-pointer reveal-on-scroll" style="transition-delay: 100ms;">
+                <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-lg cursor-pointer reveal-on-scroll" style="transition-delay: 100ms;" onclick="openLightbox('https://github.com/agelmet/LOGOTHETI/blob/main/DSC06172.jpg?raw=true')">
                     <img src="https://github.com/agelmet/LOGOTHETI/blob/main/DSC06172.jpg?raw=true" alt="Office Space 2" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
                     <div class="absolute inset-0 bg-espresso/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-lg cursor-pointer reveal-on-scroll" style="transition-delay: 200ms;">
+                <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-lg cursor-pointer reveal-on-scroll" style="transition-delay: 200ms;" onclick="openLightbox('https://github.com/agelmet/LOGOTHETI/blob/main/DSC06195.jpg?raw=true')">
                     <img src="https://github.com/agelmet/LOGOTHETI/blob/main/DSC06195.jpg?raw=true" alt="Office Space 3" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
                     <div class="absolute inset-0 bg-espresso/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-lg cursor-pointer reveal-on-scroll" style="transition-delay: 300ms;">
+                <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-lg cursor-pointer reveal-on-scroll" style="transition-delay: 300ms;" onclick="openLightbox('https://github.com/agelmet/LOGOTHETI/blob/main/DSC06202.jpg?raw=true')">
                     <img src="https://github.com/agelmet/LOGOTHETI/blob/main/DSC06202.jpg?raw=true" alt="Office Space 4" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
                     <div class="absolute inset-0 bg-espresso/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
@@ -560,6 +570,16 @@
     <script>
         // Initialize Icons
         lucide.createIcons();
+
+        // Lightbox Logic
+        function openLightbox(src) {
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-img');
+            if (modal && img) {
+                img.src = src;
+                modal.showModal();
+            }
+        }
 
         // 1. Mobile/Desktop Menu Logic
         const openMenuBtn = document.getElementById('open-menu-btn');
