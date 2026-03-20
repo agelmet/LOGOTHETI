@@ -136,6 +136,7 @@
             .type-body { font-size: 16px; } /* Keeping 16px for legibility */
         }
     </style>
+<link rel="stylesheet" href="/index.css">
 </head>
 <body class="bg-cream text-espresso bg-grain relative overflow-x-hidden font-sans">
 
@@ -186,7 +187,7 @@
     <!-- Hero Section -->
     <header class="relative w-full h-[50vh] min-h-[400px] md:h-[70vh] md:min-h-[500px] flex flex-col items-center overflow-hidden group">
         <div id="hero-slider" class="absolute inset-0 z-0 bg-espresso">
-            <img id="current-hero-img" src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/698ec022c086653e1462031a.jpg" 
+            <img id="current-hero-img" src="https://github.com/agelmet/LOGOTHETI/blob/main/slider1.jpg?raw=true" 
                  alt="Avra Logotheti Hero" 
                  class="w-full h-full object-cover object-center animate-breath transition-opacity duration-1000">
             <div class="absolute inset-0 bg-white/5"></div>
@@ -205,7 +206,7 @@
             <div class="lg:col-span-5 relative group reveal-on-scroll">
                 <div class="relative overflow-hidden rounded-[2rem] shadow-2xl aspect-[3/4] border-4 border-white">
                     <div class="absolute inset-0 bg-sage/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
-                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69897c807f6dcfa6ab7292f7.webp" 
+                    <img src="https://github.com/agelmet/LOGOTHETI/blob/main/DSC06252.jpg?raw=true" 
                          alt="Avra Logotheti Psychologist" 
                          class="object-cover w-full h-full transform transition-transform duration-1000 group-hover:scale-105">
                 </div>
@@ -332,17 +333,21 @@
                 <div class="w-24 h-1 bg-sage mx-auto mt-6 rounded-full opacity-50"></div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-lg cursor-pointer reveal-on-scroll">
-                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69943398a9efde6b3fd33ba2.jpg" alt="Office Space 1" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                    <img src="https://github.com/agelmet/LOGOTHETI/blob/main/DSC06151.jpg?raw=true" alt="Office Space 1" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
                     <div class="absolute inset-0 bg-espresso/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-lg cursor-pointer reveal-on-scroll" style="transition-delay: 100ms;">
-                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/699433986bac245153f60ead.jpg" alt="Office Space 2" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                    <img src="https://github.com/agelmet/LOGOTHETI/blob/main/DSC06172.jpg?raw=true" alt="Office Space 2" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
                     <div class="absolute inset-0 bg-espresso/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-lg cursor-pointer reveal-on-scroll" style="transition-delay: 200ms;">
-                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/699433986bac2479b8f60eb0.jpeg" alt="Office Space 3" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                    <img src="https://github.com/agelmet/LOGOTHETI/blob/main/DSC06195.jpg?raw=true" alt="Office Space 3" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-espresso/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-lg cursor-pointer reveal-on-scroll" style="transition-delay: 300ms;">
+                    <img src="https://github.com/agelmet/LOGOTHETI/blob/main/DSC06202.jpg?raw=true" alt="Office Space 4" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
                     <div class="absolute inset-0 bg-espresso/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
             </div>
@@ -611,10 +616,9 @@
 
         // 4. Hero Slider Logic
         const heroImages = [
-            "https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/698ec022c086653e1462031a.jpg",
-            "https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/6991d5b13b3cc963afb1b0fc.jpg",
-            "https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/6991cc7c008498df82a9f498.jpg",
-            "https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/6990449c24813c60aa705d75.jpg"
+            "https://github.com/agelmet/LOGOTHETI/blob/main/slider1.jpg?raw=true",
+            "https://github.com/agelmet/LOGOTHETI/blob/main/slider2.jpg?raw=true",
+            "https://github.com/agelmet/LOGOTHETI/blob/main/slider3.jpg?raw=true"
         ];
         
         let currentHeroIndex = 0;
@@ -672,5 +676,6 @@
         }
 
     </script>
+<script type="module" src="/index.tsx"></script>
 </body>
 </html>
