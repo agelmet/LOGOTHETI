@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="el" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Αύρα Λογοθέτη | Κλινική Ψυχολόγος & CBT</title>
+    <meta name="description" content="Κλινική Ψυχολογία & Γνωσιακή Συμπεριφορική Θεραπεία. Ατομικές συνεδρίες, διαχείριση άγχους και online θεραπεία.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F5F2EC', 
+                        sand: '#D7CBB5', 
+                        sage: '#A6A89A',  
+                        sageLight: '#F5F2EC', 
+                        rust: '#89523D', 
+                        gold: '#917043',
+                        espresso: '#3E2316', 
+                        coffee: '#3E2318', 
+                        serviceCard: '#d8c3af', 
+                        softwhite: 'rgba(255, 255, 255, 0.95)',
+                    },
+                    fontFamily: {
+                        sans: ['"Gotham Greek"', '"Gotham"', 'sans-serif'], 
+                        serif: ['"Gotham Greek"', '"Gotham"', 'sans-serif'],
+                        script: ['"Gotham Greek"', '"Gotham"', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                        'breath': 'breath 20s ease-in-out infinite alternate',
+                        'fadeIn': 'fadeIn 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        breath: {
+                            '0%': { transform: 'scale(1)' },
+                            '100%': { transform: 'scale(1.1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Force Gotham Greek everywhere */
+        * {
+            font-family: 'Gotham Greek', 'Gotham', sans-serif !important;
+        }
+
+        /* Grain Effect */
+        .bg-grain::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Hide Scrollbar for Carousel */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Greek Capitalization Fix */
+        .greek-caps {
+            text-transform: uppercase;
+        }
+        
+        /* Smooth Text Rendering */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Reveal Animation Utility */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        ::selection {
+            background: #A6A89A; 
+            color: #ffffff;
+        }
+
+        /* Typography sizing overrides based on prompt (PT to PX approximation: 1pt = 1.33px) */
+        /* Title: 24pt ~ 32px */
+        .type-title { font-size: 32px; font-weight: 500; line-height: 1.2; }
+        
+        /* Subtitle: 16pt ~ 21px */
+        .type-subtitle { font-size: 21px; font-weight: 500; line-height: 1.4; }
+        
+        /* Body: 12pt ~ 16px */
+        .type-body { font-size: 16px; font-weight: 400; line-height: 1.6; }
+        
+        /* Mobile Specific adjustments if needed */
+        @media (max-width: 768px) {
+            /* Ensuring readability on mobile while keeping requested hierarchy */
+            .type-title { font-size: 28px; }
+            .type-subtitle { font-size: 18px; }
+            .type-body { font-size: 16px; } /* Keeping 16px for legibility */
+        }
+    </style>
+</head>
+<body class="bg-cream text-espresso bg-grain relative overflow-x-hidden font-sans">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="w-full z-40 py-1 bg-cream border-b border-transparent">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center w-full">
+            <a href="#" class="flex items-center gap-2 hover:scale-105 transition-transform duration-300 group">
+                 <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69958671fa6b7b7dfb16ac96.png" alt="Avra Logotheti Logo" class="h-12 md:h-16 w-auto object-contain">
+            </a>
+            
+            <div class="flex items-center gap-8">
+                <!-- Desktop Menu Items -->
+                <div class="hidden lg:flex items-center gap-8 text-[#3E2318] font-medium tracking-wide text-sm">
+                    <a href="#about" class="hover:text-gold transition-colors">ΒΙΟΓΡΑΦΙΚΟ</a>
+                    <a href="#services" class="hover:text-gold transition-colors">ΥΠΗΡΕΣΙΕΣ</a>
+                    <a href="#space" class="hover:text-gold transition-colors">ΧΩΡΟΣ</a>
+                </div>
+
+                <!-- Desktop Button -->
+                <a href="https://www.doctoranytime.gr/d/Psychologos/logotheti-aura" target="_blank" class="hidden lg:inline-block bg-gold text-white px-5 py-2.5 rounded-full text-xs font-bold tracking-widest hover:bg-espresso transition-colors uppercase">
+                    ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ
+                </a>
+
+                <!-- Mobile Button & Hamburger -->
+                <div class="flex items-center gap-2 lg:hidden">
+                    <a href="https://www.doctoranytime.gr/d/Psychologos/logotheti-aura" target="_blank" class="bg-gold text-white px-2 py-1.5 rounded-full text-[8px] font-bold tracking-widest hover:bg-espresso transition-colors uppercase whitespace-nowrap">
+                        ΚΛΕΙΣΤΕ ΡΑΝΤΕΒΟΥ
+                    </a>
+                    <button id="open-menu-btn" class="text-[#3E2318] p-1 hover:text-gold transition-colors">
+                        <i data-lucide="menu" class="w-8 h-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-cream z-50 transform translate-x-full transition-transform duration-500 flex flex-col justify-center items-center space-y-8 shadow-2xl lg:hidden">
+        <button id="close-menu" class="absolute top-8 right-8 text-[#3E2318] hover:rotate-90 transition-transform duration-300 hover:text-gold">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <a href="#about" class="text-2xl font-bold text-[#3E2318] hover:text-gold transition-colors mobile-link">ΒΙΟΓΡΑΦΙΚΟ</a>
+        <a href="#services" class="text-2xl font-bold text-[#3E2318] hover:text-gold transition-colors mobile-link">ΥΠΗΡΕΣΙΕΣ</a>
+        <a href="#space" class="text-2xl font-bold text-[#3E2318] hover:text-gold transition-colors mobile-link">ΧΩΡΟΣ</a>
+        <a href="#contact" class="text-2xl font-bold text-[#3E2318] hover:text-gold transition-colors mobile-link">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative w-full h-[50vh] min-h-[400px] md:h-[70vh] md:min-h-[500px] flex flex-col items-center overflow-hidden group">
+        <div id="hero-slider" class="absolute inset-0 z-0 bg-espresso">
+            <img id="current-hero-img" src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/698ec022c086653e1462031a.jpg" 
+                 alt="Avra Logotheti Hero" 
+                 class="w-full h-full object-cover object-center animate-breath transition-opacity duration-1000">
+            <div class="absolute inset-0 bg-white/5"></div>
+        </div>
+        <button id="prev-slide" class="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 text-white/70 hover:text-white bg-black/20 hover:bg-black/40 rounded-full p-2 transition-all opacity-0 group-hover:opacity-100">
+            <i data-lucide="chevron-left" class="w-8 h-8 md:w-12 md:h-12"></i>
+        </button>
+        <button id="next-slide" class="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 text-white/70 hover:text-white bg-black/20 hover:bg-black/40 rounded-full p-2 transition-all opacity-0 group-hover:opacity-100">
+            <i data-lucide="chevron-right" class="w-8 h-8 md:w-12 md:h-12"></i>
+        </button>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="relative py-12 md:py-32 px-6 lg:px-12 max-w-7xl mx-auto bg-cream">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            <div class="lg:col-span-5 relative group reveal-on-scroll">
+                <div class="relative overflow-hidden rounded-[2rem] shadow-2xl aspect-[3/4] border-4 border-white">
+                    <div class="absolute inset-0 bg-sage/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69897c807f6dcfa6ab7292f7.webp" 
+                         alt="Avra Logotheti Psychologist" 
+                         class="object-cover w-full h-full transform transition-transform duration-1000 group-hover:scale-105">
+                </div>
+                <div class="absolute -bottom-8 -left-8 w-32 h-32 border-2 border-sage rounded-full z-0 opacity-60"></div>
+                <div class="absolute -top-8 -right-8 w-20 h-20 bg-sage/10 rounded-full z-0"></div>
+            </div>
+
+            <div class="lg:col-span-7 space-y-8 reveal-on-scroll text-left">
+                <div class="space-y-4">
+                    <h2 class="type-title text-espresso leading-snug">
+                        ΠΟΙΑ ΕΙΜΑΙ
+                    </h2>
+                    <h3 class="type-subtitle text-sage">
+                        Εκπαίδευση | Κλινική εμπειρία | Θεραπευτική προσέγγιση
+                    </h3>
+                </div>
+
+                <div class="type-body text-espresso/90 space-y-6 leading-relaxed">
+                    <p>
+                        Είμαι η Αύρα Λογοθέτη, Ψυχολόγος-Ψυχοθεραπεύτρια, απόφοιτη του <span class="text-sage font-medium">Wrexham, Glyndwr University (UK)</span> και κάτοχος μεταπτυχιακού τίτλου στην Κλινική Ψυχολογία από το <span class="text-sage font-medium">Utrecht University</span> της Ολλανδίας. Έχω ολοκληρώσει τετραετή εκπαίδευση στη Γνωσιακή-Συμπεριφοριστική Ψυχοθεραπεία και διαθέτω κλινική εμπειρία σε δημόσιες και ιδιωτικές δομές στην Ελλάδα και το εξωτερικό.
+                    </p>
+                    <p>
+                        <span class="text-sage font-medium">Η θεραπευτική μου προσέγγιση</span> βασίζεται στη Γνωσιακή-Συμπεριφοριστική Θεραπεία, με ενσωμάτωση στοιχείων της Θεραπείας Σχημάτων. Η ψυχοθεραπεία αποτελεί έναν <span class="text-sage font-medium">ασφαλή χώρο,</span> όπου κάθε άνθρωπος μπορεί να ακουστεί, να κατανοήσει τον εαυτό του και να βρει νέους τρόπους ενδυνάμωσης.
+                    </p>
+                    
+                    <button onclick="document.getElementById('cv-modal').showModal()" class="inline-block mt-4 text-sm font-bold text-gold border-b border-gold hover:text-espresso hover:border-espresso transition-colors uppercase tracking-widest cursor-pointer">
+                        Διαβαστε Περισσοτερα
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Full CV -->
+    <dialog id="cv-modal" class="p-0 rounded-2xl max-w-3xl w-full backdrop:bg-black/50 overflow-hidden shadow-2xl m-auto">
+        <div class="bg-cream p-8 md:p-12 relative max-h-[80vh] overflow-y-auto">
+            <button onclick="document.getElementById('cv-modal').close()" class="absolute top-4 right-4 text-espresso hover:text-gold transition-colors">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+            <h3 class="type-title text-espresso mb-6">Βιογραφικό Σημείωμα</h3>
+            <div class="type-body text-espresso/90 space-y-4 text-justify">
+                <p>Είμαι η Αύρα Λογοθέτη, Ψυχολόγος-Ψυχοθεραπεύτρια και κάτοχος άδειας άσκησης επαγγέλματος (Αρ. Άδειας: 377170). Σπούδασα Ψυχολογία στο Wrexham, Glyndwr University (UK) και συνέχισα με μεταπτυχιακή εξειδίκευση στην Κλινική Ψυχολογία (MSc) στο Utrecht University της Ολλανδίας, όπου ολοκλήρωσα και την πρακτική μου εκπαίδευση στο Εργαστήριο Κλινικών Δεξιοτήτων του πανεπιστημίου.</p>
+                <p>Έχω ολοκληρώσει τετραετή εκπαίδευση στη Γνωσιακή-Συμπεριφοριστική Ψυχοθεραπεία στην Εταιρεία Γνωσιακών Συμπεριφοριστικών Σπουδών, σύμφωνα με τα κριτήρια της European Association for Behavioral and Cognitive Therapies (EABCT), και είμαι πιστοποιημένο μέλος της EABCT και της British Psychological Society (BPS).</p>
+                <p>Η κλινική μου εμπειρία ξεκίνησε στο Ψυχιατρικό Τμήμα του Βενιζελείου Νοσοκομείου Ηρακλείου Κρήτης και συνεχίστηκε σε Κέντρο Συμβουλευτικής και Ψυχοθεραπείας στο Leiden της Ολλανδίας, όπου εργάστηκα με θεραπευόμενους που μεταξύ άλλων αντιμετώπιζαν αγχώδεις/καταθλιπτικές διαταραχές, ιδεοψυχαναγκαστικη διαταραχή, διαταραχή σωματικών συμπτωμάτων, δυσκολίες προσαρμογής, πένθος και διαπροσωπικές δυσκολίες. Με την επιστροφή μου στην Ελλάδα, εργάστηκα ως Κλινική Ψυχολόγος σε ιδιωτική κλινική αποκατάστασης στην Αθήνα, παρέχοντας ψυχολογική υποστήριξη σε ασθενείς με χρόνια και αυτοάνοσα νοσήματα, καθώς και σε άτομα με σοβαρές σωματικές βλάβες από ατυχήματα.</p>
+                <p>Σήμερα διατηρώ ιδιωτικό γραφείο στην περιοχή των Ιλισίων, προσφέροντας ατομική ψυχοθεραπεία σε ενήλικες. Η θεραπευτική μου προσέγγιση βασίζεται στη Γνωσιακή-Συμπεριφοριστική Θεραπεία, ενσωματώνοντας παράλληλα στοιχεία της Θεραπείας Σχημάτων. Η κλινική μου εμπειρία περιλαμβάνει, μεταξύ άλλων, αιτήματα που αφορούν αγχώδεις και καταθλιπτικές διαταραχές, την ιδεοψυχαναγκαστική διαταραχή, διαταραχές πρόσληψης τροφής, το πένθος, το ψυχικό τραύμα, τη χαμηλή αυτοεκτίμηση, τις δυσλειτουργίες στις σχέσεις και την ψυχική ενδυνάμωση.</p>
+                <p>Βασικό στοιχείο για τη διασφάλιση της ποιότητας του θεραπευτικού μου έργου αποτελεί η συστηματική κλινική εποπτεία, η μακροχρόνια προσωπική ψυχοθεραπεία και η συνεχής επιστημονική κατάρτιση μέσα από επιμορφωτικά σεμινάρια και συνέδρια.</p>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- CBT SECTION -->
+    <section id="cbt" class="relative py-12 md:py-24 px-6 lg:px-12 max-w-7xl mx-auto bg-white/50 rounded-[3rem] my-12">
+        <div class="max-w-4xl mx-auto space-y-8 reveal-on-scroll">
+             <div class="space-y-4 text-center">
+                <h2 class="type-title text-espresso leading-snug">
+                    ΓΝΩΣΙΑΚΗ- ΣΥΜΠΕΡΙΦΟΡΙΣΤΙΚΗ ΘΕΡΑΠΕΙΑ
+                </h2>
+                <p class="type-subtitle italic text-sage">
+                    «Ταράττει τοὺς ἀνθρώπους οὐ τὰ πράγματα, ἀλλὰ τὰ περὶ τῶν πραγμάτων δόγματα.» (Επίκτητος)
+                </p>
+            </div>
+            <div class="type-body text-espresso/90 space-y-6 text-left leading-relaxed">
+                <p>
+                    Η Γνωσιακή-Συμπεριφοριστική Θεραπεία βασίζεται στη γνωσιακή αρχή ότι ο άνθρωπος δεν αντιδρά στα ίδια τα γεγονότα, αλλά στον τρόπο με τον οποίο τα ερμηνεύει. Ο τρόπος που αντιλαμβανόμαστε τις εμπειρίες μας επηρεάζει το πώς νιώθουμε και πώς συμπεριφερόμαστε στην καθημερινότητά μας, γεγονός που εξηγεί γιατί διαφορετικοί άνθρωποι αντιδρούν με διαφορετικό τρόπο σε παρόμοιες καταστάσεις. Οι σκέψεις, τα συναισθήματα και οι συμπεριφορές μας είχαν κάποτε μαθευτεί και υπήρξαν λειτουργικές. Ωστόσο, στο παρόν συχνά προσφέρουν μόνο βραχυπρόθεσμη ανακούφιση, ενώ μακροπρόθεσμα συντηρούν δυσλειτουργικά μοτίβα, αρνητικά συναισθήματα και δυσκολίες. 
+                </p>
+                <p>
+                    Η ΓΣΘ συνδυάζει γνωσιακές και συμπεριφοριστικές τεχνικές με στόχο την αναγνώριση και την τροποποίηση αυτών των μοτίβων, βοηθώντας το άτομο να κατανοήσει τον τρόπο σκέψης του, να αξιολογήσει την εγκυρότητα των σκέψεών του και να αναπτύξει πιο λειτουργικούς τρόπους διαχείρισης των δυσκολιών της καθημερινότητας. Πρόκειται για μια δομημένη, στοχοκατευθυνόμενη και επιστημονικά τεκμηριωμένη θεραπευτική προσέγγιση, με έμφαση στο παρόν και εφαρμογή δεξιοτήτων στην καθημερινή ζωή. Η αποτελεσματικότητά της έχει τεκμηριωθεί επιστημονικά για αγχώδεις και καταθλιπτικές διαταραχές, ιδεοψυχαναγκαστική διαταραχή, πένθος, διαταραχές σωματικών συμπτωμάτων και πρόσληψης τροφής, καθώς και για δυσκολίες που αφορούν τη σχέση του ατόμου με τον εαυτό του και τους άλλους.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-12 md:py-24 px-6 lg:px-12 max-w-7xl mx-auto bg-cream my-6 md:my-12">
+        <div class="text-center mb-16 reveal-on-scroll">
+            <h2 class="type-title mt-3 text-espresso font-bold">ΥΠΗΡΕΣΙΕΣ</h2>
+            <div class="w-24 h-1 bg-sage mx-auto mt-6 rounded-full opacity-50"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            <!-- Service Card 1 -->
+            <div class="bg-serviceCard p-8 md:p-12 rounded-[2rem] shadow-lg transition-all duration-500 reveal-on-scroll flex flex-col h-full relative overflow-hidden group border border-white/20 hover:bg-sage cursor-default">
+                <div class="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110 duration-700">
+                    <i data-lucide="user" class="w-40 h-40 text-espresso group-hover:text-white"></i>
+                </div>
+                
+                <div class="relative z-10">
+                    <div class="w-16 h-16 bg-white/50 rounded-full flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform duration-500 group-hover:bg-white">
+                        <i data-lucide="brain-circuit" class="w-8 h-8 text-espresso group-hover:text-sage transition-colors duration-300"></i>
+                    </div>
+                    <h3 class="type-title text-espresso mb-6 font-bold group-hover:text-white transition-colors duration-300">Ατομική Ψυχοθεραπεία</h3>
+                    
+                    <p class="type-body text-espresso/80 leading-relaxed mb-6 text-left group-hover:text-white/90 transition-colors duration-300">
+                        Οι συνεδρίες ατομικής ψυχοθεραπείας πραγματοποιούνται σε εβδομαδιαία βάση και διαρκούν περίπου 45–50 λεπτά. Η ατομική ψυχοθεραπεία αποτελεί το προσωπικό ραντεβού με τον εαυτό μέσα σε ένα ασφαλές πλαίσιο, όπου η προσωπική ιστορία του κάθε ανθρώπου παίρνει χώρο.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Service Card 2 -->
+            <div class="bg-serviceCard p-8 md:p-12 rounded-[2rem] shadow-lg transition-all duration-500 reveal-on-scroll flex flex-col h-full relative overflow-hidden group border border-white/20 hover:bg-sage cursor-default">
+                <div class="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110 duration-700">
+                    <i data-lucide="globe" class="w-40 h-40 text-espresso group-hover:text-white"></i>
+                </div>
+                
+                <div class="relative z-10">
+                    <div class="w-16 h-16 bg-white/50 rounded-full flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform duration-500 group-hover:bg-white">
+                        <i data-lucide="video" class="w-8 h-8 text-espresso group-hover:text-sage transition-colors duration-300"></i>
+                    </div>
+                    <h3 class="type-title text-espresso mb-6 font-bold group-hover:text-white transition-colors duration-300">Διαδικτυακή Ψυχοθεραπεία</h3>
+                    
+                    <p class="type-body text-espresso/80 leading-relaxed mb-6 text-left group-hover:text-white/90 transition-colors duration-300">
+                        Η διαδικτυακή ψυχοθεραπεία προσφέρει τη δυνατότητα θεραπευτικών συνεδριών εξ αποστάσεως διατηρώντας το ίδιο θεραπευτικό πλαίσιο εμπιστοσύνης και εχεμύθειας.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Space Section (Replacing Roadmap) -->
+    <section id="space" class="py-12 md:py-24 bg-cream relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <div class="text-center mb-16 reveal-on-scroll">
+                <h2 class="type-title mt-3 text-espresso font-bold">ΧΩΡΟΣ</h2>
+                <div class="w-24 h-1 bg-sage mx-auto mt-6 rounded-full opacity-50"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-lg cursor-pointer reveal-on-scroll">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/69943398a9efde6b3fd33ba2.jpg" alt="Office Space 1" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-espresso/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-lg cursor-pointer reveal-on-scroll" style="transition-delay: 100ms;">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/699433986bac245153f60ead.jpg" alt="Office Space 2" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-espresso/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square shadow-lg cursor-pointer reveal-on-scroll" style="transition-delay: 200ms;">
+                    <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/699433986bac2479b8f60eb0.jpeg" alt="Office Space 3" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-espresso/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-12 md:py-24 bg-sageLight border-y border-sage/10 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 mb-12 flex justify-between items-end reveal-on-scroll">
+            <div>
+                <h2 class="type-title mt-2 text-espresso font-bold">Αξιολογήσεις</h2>
+            </div>
+            <div class="flex gap-2">
+                <button id="scrollLeft" class="p-3 rounded-full border border-sage/20 bg-white hover:bg-sage hover:text-white transition-colors shadow-sm">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                </button>
+                <button id="scrollRight" class="p-3 rounded-full border border-sage/20 bg-white hover:bg-sage hover:text-white transition-colors shadow-sm">
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="reviewsContainer" class="flex overflow-x-auto gap-6 px-6 lg:px-12 no-scrollbar snap-x snap-mandatory scroll-pl-6 lg:scroll-pl-12 pb-12">
+            <div class="min-w-[300px] md:min-w-[400px] snap-start bg-white p-8 rounded-2xl shadow-md border border-sage/10 flex flex-col justify-between select-none">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-1 text-sage">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <span class="font-bold text-xl">10.0</span>
+                        </div>
+                        <img src="https://www.doctoranytime.gr/images/logo-rebranding.svg" alt="DoctorAnytime" class="h-4 opacity-70">
+                    </div>
+                    <p class="italic text-lg mb-4 text-espresso/80">"Με έκανε να νιώσω άνετα χωρίς πίεση και χωρίς βιασύνη. Άκουσε πραγματικά τι είχα ανάγκη... Πολύ ανθρώπινη προσέγγιση."</p>
+                </div>
+                <div class="mt-4 pt-4 border-t border-sage/10 flex justify-between items-center">
+                    <span class="font-bold text-xs uppercase tracking-wider text-sage">Maria</span>
+                    <span class="text-[10px] text-espresso/50">03 ΦΕΒ 2026</span>
+                </div>
+            </div>
+
+            <div class="min-w-[300px] md:min-w-[400px] snap-start bg-white p-8 rounded-2xl shadow-md border border-sage/10 flex flex-col justify-between select-none">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-1 text-sage">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <span class="font-bold text-xl">10.0</span>
+                        </div>
+                        <img src="https://www.doctoranytime.gr/images/logo-rebranding.svg" alt="DoctorAnytime" class="h-4 opacity-70">
+                    </div>
+                    <p class="italic text-lg mb-4 text-espresso/80">"Εξαιρετική επαγγελματίας με άρτια επιστημονική κατάρτιση. Με βοήθησε να διαχειριστώ το χρόνια άγχος μου!"</p>
+                </div>
+                <div class="mt-4 pt-4 border-t border-sage/10 flex justify-between items-center">
+                    <span class="font-bold text-xs uppercase tracking-wider text-sage">ΕΛΕΝΗ</span>
+                    <span class="text-[10px] text-espresso/50">15 ΙΑΝ 2026</span>
+                </div>
+            </div>
+
+            <div class="min-w-[300px] md:min-w-[400px] snap-start bg-white p-8 rounded-2xl shadow-md border border-sage/10 flex flex-col justify-between select-none">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-1 text-sage">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <span class="font-bold text-xl">10.0</span>
+                        </div>
+                        <img src="https://www.doctoranytime.gr/images/logo-rebranding.svg" alt="DoctorAnytime" class="h-4 opacity-70">
+                    </div>
+                    <p class="italic text-lg mb-4 text-espresso/80">"Θετική εμπειρία. Προσεγγίζει κάθε θέμα με σοβαρότητα, ενσυναίσθηση και σεβασμό, δημιουργώντας κλίμα εμπιστοσύνης."</p>
+                </div>
+                <div class="mt-4 pt-4 border-t border-sage/10 flex justify-between items-center">
+                    <span class="font-bold text-xs uppercase tracking-wider text-sage">Marianna</span>
+                    <span class="text-[10px] text-espresso/50">14 ΙΑΝ 2026</span>
+                </div>
+            </div>
+
+             <div class="min-w-[300px] md:min-w-[400px] snap-start bg-white p-8 rounded-2xl shadow-md border border-sage/10 flex flex-col justify-between select-none">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-1 text-sage">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <span class="font-bold text-xl">9.4</span>
+                        </div>
+                        <img src="https://www.doctoranytime.gr/images/logo-rebranding.svg" alt="DoctorAnytime" class="h-4 opacity-70">
+                    </div>
+                    <p class="italic text-lg mb-4 text-espresso/80">"Κάθε συνεδρία είχε σαφή κατεύθυνση. Δεν έφευγα απλώς πιο «ανάλαφρος», αλλά με πρακτικά εργαλεία."</p>
+                </div>
+                <div class="mt-4 pt-4 border-t border-sage/10 flex justify-between items-center">
+                    <span class="font-bold text-xs uppercase tracking-wider text-sage">Γεώργιος</span>
+                    <span class="text-[10px] text-espresso/50">09 ΙΑΝ 2026</span>
+                </div>
+            </div>
+
+            <div class="min-w-[300px] md:min-w-[400px] snap-start bg-white p-8 rounded-2xl shadow-md border border-sage/10 flex flex-col justify-between select-none">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-1 text-sage">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <span class="font-bold text-xl">10.0</span>
+                        </div>
+                        <img src="https://www.doctoranytime.gr/images/logo-rebranding.svg" alt="DoctorAnytime" class="h-4 opacity-70">
+                    </div>
+                    <p class="italic text-lg mb-4 text-espresso/80">"Είναι απλά καταπληκτική στη δουλειά της. Εξαιρετική επαγγελματίας!"</p>
+                </div>
+                <div class="mt-4 pt-4 border-t border-sage/10 flex justify-between items-center">
+                    <span class="font-bold text-xs uppercase tracking-wider text-sage">Iakovos</span>
+                    <span class="text-[10px] text-espresso/50">07 ΙΑΝ 2026</span>
+                </div>
+            </div>
+
+            <div class="min-w-[300px] md:min-w-[400px] snap-start bg-sage text-white p-8 rounded-2xl shadow-md flex flex-col justify-center items-center text-center select-none cursor-pointer hover:bg-espresso transition-colors group" onclick="window.open('https://www.doctoranytime.gr/d/Psychologos/logotheti-aura', '_blank')">
+                <i data-lucide="external-link" class="w-12 h-12 mb-4 opacity-50 group-hover:opacity-100 transition-opacity"></i>
+                <h4 class="text-2xl mb-2 font-bold">Περισσότερες Αξιολογήσεις</h4>
+                <p class="text-sm opacity-70">Διαβάστε περισσότερα στο DoctorAnyTime</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-rust text-cream pt-12 pb-10 rounded-t-[3rem] -mt-10 relative z-20 border-t-8 border-gold">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 mb-16">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="space-y-12">
+                     <div class="space-y-6">
+                        <img src="https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/698a2773a41b8732931a9dd2.png" alt="Avra Logotheti Logo" class="h-80 w-auto object-contain">
+                        <p class="text-sm opacity-60 leading-relaxed max-w-xs">
+                            Κλινική Ψυχολόγος & CBT Θεραπεύτρια.<br>
+                            Δημιουργώντας ένα ασφαλές πλαίσιο ενδυνάμωσης για μια καλύτερη ποιότητα ζωής.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://www.linkedin.com/in/avra-logotheti-0671251b8/?originalSubdomain=gr" target="_blank" class="p-2 border border-white/20 rounded-full hover:bg-gold hover:border-gold hover:text-white transition-all">
+                                <i data-lucide="linkedin" class="w-5 h-5"></i>
+                            </a>
+                            <a href="https://www.instagram.com/avra.logotheti_psychologist" target="_blank" class="p-2 border border-white/20 rounded-full hover:bg-gold hover:border-gold hover:text-white transition-all">
+                                <i data-lucide="instagram" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                     <div class="space-y-6">
+                        <h4 class="text-xs tracking-widest uppercase greek-caps font-bold text-white">ΣΤΟΙΧΕΙΑ ΕΠΙΚΟΙΝΩΝΙΑΣ</h4>
+                        <div class="space-y-4 text-xl">
+                            <div class="flex items-start gap-4 group">
+                                <i data-lucide="map-pin" class="w-6 h-6 mt-1 opacity-50 group-hover:text-gold transition-colors"></i>
+                                <span>Παπαδιαμαντοπούλου 9,<br>Ιλίσια, Αττική</span>
+                            </div>
+                            <div class="flex items-center gap-4 group">
+                                <i data-lucide="phone" class="w-6 h-6 opacity-50 group-hover:text-gold transition-colors"></i>
+                                <a href="tel:6942644533" class="hover:underline">694 264 4533</a>
+                            </div>
+                            <div class="flex items-center gap-4 group">
+                                <i data-lucide="calendar" class="w-6 h-6 opacity-50 group-hover:text-gold transition-colors"></i>
+                                <a href="https://www.doctoranytime.gr/d/Psychologos/logotheti-aura" target="_blank" class="hover:underline text-base tracking-wide">Κλείστε Ραντεβού</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl overflow-hidden h-64 border border-white/10 shadow-lg group">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3144.978280628372!2d23.75549837651084!3d37.97746997193433!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1982b6c7a7b8b%3A0x8e8b6c7a7b8b6c7a!2sPapadiamantopoulou%209%2C%20Ilisia%20115%2028!5e0!3m2!1sen!2sgr!4v1700000000000!5m2!1sen!2sgr" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            class="grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+                        </iframe>
+                    </div>
+                </div>
+
+                <div class="bg-white/5 backdrop-blur-sm p-8 md:p-12 rounded-[2rem] border border-white/10">
+                    <h3 class="text-3xl mb-6 font-bold">Φόρμα Επικοινωνίας</h3>
+                    <p class="text-sm opacity-60 mb-8">Συμπληρώστε την φόρμα και θα επικοινωνήσω μαζί σας το συντομότερο δυνατό.</p>
+                    
+                    <form action="https://formspree.io/f/xzdaepon" method="POST" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label for="name" class="text-xs uppercase tracking-widest text-white">Ονοματεπωνυμο</label>
+                                <input type="text" id="name" name="name" class="w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-gold focus:bg-white/20 transition-colors placeholder-white/30" placeholder="Το όνομά σας" required>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="phone" class="text-xs uppercase tracking-widest text-white">Τηλεφωνο</label>
+                                <input type="tel" id="phone" name="phone" class="w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-gold focus:bg-white/20 transition-colors placeholder-white/30" placeholder="Το τηλέφωνό σας" required>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="email" class="text-xs uppercase tracking-widest text-white">Email</label>
+                            <input type="email" id="email" name="email" class="w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-gold focus:bg-white/20 transition-colors placeholder-white/30" placeholder="Το email σας" required>
+                        </div>
+                        <div class="space-y-2">
+                             <label for="message" class="text-xs uppercase tracking-widest text-white">Μηνυμα</label>
+                            <textarea id="message" name="message" rows="4" class="w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-gold focus:bg-white/20 transition-colors placeholder-white/30" placeholder="Πώς μπορώ να σας βοηθήσω;" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gold text-white font-bold uppercase tracking-widest py-4 rounded-lg hover:bg-cream hover:text-espresso transition-colors duration-300 shadow-md">
+                            Αποστολη
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-[10px] tracking-widest uppercase text-white hover:opacity-100 transition-opacity">
+            <span>© 2026 AVRA LOGOTHETI</span>
+            <span class="mt-2 md:mt-0">
+                Designed by <a href="https://advonmedia.com" target="_blank" class="hover:text-white transition-colors border-b border-transparent hover:border-white">Advon Media</a>
+            </span>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // 1. Mobile/Desktop Menu Logic
+        const openMenuBtn = document.getElementById('open-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        if (mobileMenu) {
+            const openMenu = () => {
+                mobileMenu.classList.remove('translate-x-full');
+            };
+            
+            if (openMenuBtn) openMenuBtn.addEventListener('click', openMenu);
+
+            const closeMenu = () => {
+                mobileMenu.classList.add('translate-x-full');
+            };
+
+            if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMenu);
+            
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+        }
+
+        // 2. Reveal on Scroll Animation
+        const revealElements = document.querySelectorAll('.reveal-on-scroll');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // 3. Carousel Logic (Reviews)
+        const container = document.getElementById('reviewsContainer');
+        const leftBtn = document.getElementById('scrollLeft');
+        const rightBtn = document.getElementById('scrollRight');
+
+        if (container && leftBtn && rightBtn) {
+            rightBtn.addEventListener('click', () => {
+                container.scrollBy({ left: 400, behavior: 'smooth' });
+            });
+            leftBtn.addEventListener('click', () => {
+                container.scrollBy({ left: -400, behavior: 'smooth' });
+            });
+        }
+
+        // 4. Hero Slider Logic
+        const heroImages = [
+            "https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/698ec022c086653e1462031a.jpg",
+            "https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/6991d5b13b3cc963afb1b0fc.jpg",
+            "https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/6991cc7c008498df82a9f498.jpg",
+            "https://assets.cdn.filesafe.space/61icdoMiJ2pHklO6mmKW/media/6990449c24813c60aa705d75.jpg"
+        ];
+        
+        let currentHeroIndex = 0;
+        const currentHeroImg = document.getElementById('current-hero-img');
+        const nextSlideBtn = document.getElementById('next-slide');
+        const prevSlideBtn = document.getElementById('prev-slide');
+        let slideInterval;
+
+        function updateHeroImage() {
+            if(!currentHeroImg) return;
+            
+            // Simple fade out/in effect
+            currentHeroImg.style.opacity = '0';
+            
+            setTimeout(() => {
+                currentHeroImg.src = heroImages[currentHeroIndex];
+                currentHeroImg.onload = () => {
+                    currentHeroImg.style.opacity = '1';
+                };
+            }, 500); // Wait for fade out
+        }
+
+        function nextSlide() {
+            currentHeroIndex = (currentHeroIndex + 1) % heroImages.length;
+            updateHeroImage();
+        }
+
+        function prevSlide() {
+            currentHeroIndex = (currentHeroIndex - 1 + heroImages.length) % heroImages.length;
+            updateHeroImage();
+        }
+
+        function startSlideTimer() {
+            stopSlideTimer();
+            slideInterval = setInterval(nextSlide, 3000);
+        }
+
+        function stopSlideTimer() {
+            if(slideInterval) clearInterval(slideInterval);
+        }
+
+        if(nextSlideBtn && prevSlideBtn && currentHeroImg) {
+            nextSlideBtn.addEventListener('click', () => {
+                nextSlide();
+                startSlideTimer(); // Reset timer on manual interaction
+            });
+            
+            prevSlideBtn.addEventListener('click', () => {
+                prevSlide();
+                startSlideTimer(); // Reset timer on manual interaction
+            });
+
+            // Start auto-scroll
+            startSlideTimer();
+        }
+
+    </script>
+</body>
+</html>
